@@ -4,47 +4,34 @@
     <meta charset="utf-8">
     <title>Code Analysis</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+      .container {
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: #f7f7f7;
+      }
+    </style>
   </head>
   <body>
     <div class="container">
-      <h1>Upload your code for analysis</h1>
+      <div class="jumbotron">
+        <h1 class="display-4 text-center mb-4">Upload your code for analysis</h1>
+        <p class="lead">Select a ZIP file containing your code to analyze.</p>
+      </div>  
       
-      <form enctype="multipart/form-data">
+      <form>
         <div class="form-group">
-          <label>Upload your ZIP file containing code:</label>
-          <input type="file" name="file" class="form-control-file" accept=".zip">
+          <label for="file">Select ZIP file:</label>
+          <input type="file" class="form-control-file" id="file" accept=".zip">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+      </form>       
+
+      <hr>
       
-      <div id="dropzone">
-        <!-- Dropzone will create the file upload button/preview here -->
-      </div>
-      
-      <h2>Results</h2>
+      <h2 class="mt-4">Results:</h2>
       <pre id="results"></pre>
     </div>
-
-    <script>
-      const form = document.querySelector('form');
-      const results = document.querySelector('#results');
-
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();  
-  
-        const file = document.querySelector('#file').files[0];
-        const data = new FormData();
-        data.append('file', file);
-      
-        fetch('/file/upload', {
-          method: 'POST',
-          body: data
-        })
-        .then(res => res.json())
-        .then(result => {
-          results.innerText = JSON.stringify(result, null, 2);
-        })
-      });
-    </script>
   </body>
 </html>
