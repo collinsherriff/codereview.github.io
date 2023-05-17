@@ -1,3 +1,4 @@
+html
 <!DOCTYPE html>
 <html>
   <head>
@@ -25,19 +26,25 @@
       <!-- We'll inject the results from the API here -->
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
     <script>
-      Dropzone.autoDiscover = false; 
-      let dropzone = new Dropzone("#dropzone", { 
-        url: "/file/post",
-        maxFiles: 1,
-        maxFilesize: 5, // MB
-        acceptedFiles: ".zip" 
+      const form = document.querySelector('form');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();  
+  
+        const file = document.querySelector('#file').files[0];
+        const data = new FormData();
+        data.append('file', file);
+      
+        fetch('/file/upload', {
+          method: 'POST',
+          body: data
+        })
+        .then(res => res.json())
+        .then(result => {
+          // Display analysis results
+        })
       });
     </script>
   </body>
 </html>
-
-
-<!-- Load after page load --> 
-<script src="server.js"></script> 
