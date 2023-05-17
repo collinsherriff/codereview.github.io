@@ -6,7 +6,7 @@ const app = express();
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
-  next();
+  next(); 
 });
 
 app.use(express.json({ limit: '50mb' }));
@@ -23,10 +23,11 @@ app.post('/file/upload', async (req, res) => {
         path: './extracted'  
       });       
       zip.close();  
-           
+      
       // Call Claude API with extracted files
       let files = require('fs').readdirSync('./extracted');
       let results = await axios.post('https://claude.ai/analyze', { files }); 
+      
       
       // Save results
       // ... 

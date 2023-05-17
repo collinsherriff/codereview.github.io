@@ -9,7 +9,7 @@
     <div class="container">
       <h1>Upload your code for analysis</h1>
       
-      <form>
+      <form enctype="multipart/form-data">
         <div class="form-group">
           <label>Upload your ZIP file containing code:</label>
           <input type="file" name="file" class="form-control-file" accept=".zip">
@@ -22,11 +22,12 @@
       </div>
       
       <h2>Results</h2>
-      <!-- We'll inject the results from the API here -->
+      <pre id="results"></pre>
     </div>
 
     <script>
       const form = document.querySelector('form');
+      const results = document.querySelector('#results');
 
       form.addEventListener('submit', (e) => {
         e.preventDefault();  
@@ -41,7 +42,7 @@
         })
         .then(res => res.json())
         .then(result => {
-          // Display analysis results
+          results.innerText = JSON.stringify(result, null, 2);
         })
       });
     </script>
