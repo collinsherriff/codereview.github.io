@@ -2,6 +2,10 @@ const express = require('express');
 const unzipper = require('unzipper');
 const axios = require('axios');
 
+app.get('/', (req, res) => {
+    res.send('Hello!')
+  })
+
 const app = express();
 
 app.use((req, res, next) => {
