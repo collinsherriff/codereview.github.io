@@ -1,0 +1,12 @@
+{
+  "name": "codereview.github.io",
+  "version": "1.0.0",
+  "description": "A GitHub page taking a zip file with code to analyse vulnerabilities and bugs using Claude API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Collin Sherriff",
+  "license": "ISC"
+}
