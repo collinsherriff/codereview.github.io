@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Code Analysis</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Upload your code for analysis</h1>
+      
+      <form>
+        <div class="form-group">
+          <label>Upload your ZIP file containing code:</label>
+          <input type="file" name="file" class="form-control-file" accept=".zip">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      
+      <div id="dropzone">
+        <!-- Dropzone will create the file upload button/preview here -->
+      </div>
+      
+      <h2>Results</h2>
+      <!-- We'll inject the results from the API here -->
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+    <script>
+      Dropzone.autoDiscover = false; 
+      let dropzone = new Dropzone("#dropzone", { 
+        url: "/file/post",
+        maxFiles: 1,
+        maxFilesize: 5, // MB
+        acceptedFiles: ".zip" 
+      });
+    </script>
+  </body>
+</html>
