@@ -1,6 +1,7 @@
 const express = require('express');
 const unzipper = require('unzipper');
 const axios = require('axios');
+const fs = require('fs');
 
 app.get('/', (req, res) => {
     res.send('Hello!')
@@ -28,9 +29,23 @@ app.post('/file/upload', async (req, res) => {
       });       
       zip.close();  
       
-      // Call Claude API with extracted files
-      let files = require('fs').readdirSync('./extracted');
-      let prompt = `\n\nHuman: Here are the extracted files: ${files}\n\nAssistant:`; 
+      // Read extracted files and convert to text
+      let filesText = '';
+      let dirs = fs.readdirSync('./extracted', {withFileTypes: true});
+      for (let dir of dirs) {
+        if (dir.isDirectory()) {
+          let subdir = fs.readdirSync(`./extracted/${dir.name}`);
+          filesText += `${dir.name}\n`;
+          for (let file of subdir) {
+            filesText += `  ${file}\n`;
+            filesText += fs.readFileSync(`./extracted/${dir.name}/${file}`, 'utf8');
+            filesText += '\n\n';
+          }
+        }
+      }
+      
+      // Call Claude API with text
+      let prompt = `\n\nHuman: Analyse the code\n\nAssistant: ${filesText}`;  
       let results = await axios.post('https://claude.ai/analyze', { prompt });
       
       
