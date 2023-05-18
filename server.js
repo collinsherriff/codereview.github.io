@@ -4,7 +4,7 @@ const axios = require('axios');
 const fs = require('fs');
 
 // Add Claude API token
-const API_TOKEN = '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';   
+const API_TOKEN = SECRET_TOKEN;
 
 app.get('/', (req, res) => {
     res.send('Hello!')
