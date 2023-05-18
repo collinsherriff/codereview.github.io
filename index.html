@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
   <head>
     <meta charset="utf-8">
@@ -8,12 +8,17 @@
       .container {
         max-width: 600px;
         margin: 2rem auto;
-        padding: 2rem;
+        padding: 2rem; 
         background: #343a40;
-        color: #fff;
+        color: #fff;  
       }
       .logo {
+        display: block;
+        margin: 0 auto; 
         width: 120px;
+      }  
+      .lead {
+        color: #999; 
       }
     </style>
   </head>
@@ -21,22 +26,11 @@
     <div class="container">
       <div class="jumbotron">
         <img src="logo.png" class="logo">
-        <h1 class="display-4 text-center mb-4">Upload your code for analysis</h1>  
-        <p class="lead">Select a ZIP file containing your code to analyze.</p>
+        <h1 class="display-4 text-center mb-4">Upload your code for analysis</h1>   
+        <p class="lead">Select a ZIP file containing your code to analyze.</p>  
       </div>  
       
-      <form>
-        <div class="form-group">
-          <label for="file">Select ZIP file:</label>
-          <input type="file" class="form-control-file" id="file" accept=".zip">
-        </div>
-        <button type="submit" class="btn btn-secondary">Submit</button>
-      </form>       
-
-      <hr>
-      
-      <h2 class="mt-4">Results:</h2>
-      <pre id="results"></pre>
+      <!-- ... -->
     </div>
   </body>
 </html>
