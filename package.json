@@ -8,5 +8,8 @@
     "start": "node server.js"
   },
   "author": "Collin Sherriff",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
 }
