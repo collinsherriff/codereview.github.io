@@ -1,46 +1,46 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html>  
+<html>   
   <head>
     <meta charset="utf-8">
     <title>Code Analysis</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
+    <style>   
       .container {
-        max-width: 600px;
+        max-width: 600px;  
         margin: 2rem auto;
         padding: 2rem;
         background: #343a40;
-        color: #fff;
+        color: #fff;  
       }
       .logo {
-        display: block; 
+        display: block;  
         margin: 0 auto;
         width: 120px;
-      }
+      }  
       .lead {
-        color: #A999;  
+        color: #A999;   
       }
     </style>
   </head>
   <body>
-    <div class="container">
+    <div class="container">  
       <div class="jumbotron">
         <img src="logo.png" class="logo">
-        <h1 class="display-4 text-center mb-4">Upload your code for analysis</h1>  
+<h1 class="display-4 text-center mb-4" style="color: black;">Upload your code for analysis</h1>  
         <p class="lead">Select a ZIP file containing your code to analyze.</p>  
-      </div>  
+      </div>   
       
       <form>
         <div class="form-group">
-          <label for="file">Select ZIP file:</label>
+          <label for="file">Select ZIP file:</label>  
           <input type="file" class="form-control-file" id="file" accept=".zip">
         </div>
-        <button type="submit" class="btn btn-secondary">Submit</button>
+        <button type="submit" class="btn btn-secondary">Submit</button> 
       </form>       
 
-      <hr>
+      <hr>  
       
-      <h2 class="mt-4">Results:</h2>
+      <h2 class="mt-4">Results:</h2>  
       <pre id="results"></pre>
     </div>
   </body>
