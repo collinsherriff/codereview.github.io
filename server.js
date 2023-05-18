@@ -3,12 +3,12 @@ const unzipper = require('unzipper');
 const axios = require('axios');
 const fs = require('fs');  
 
-// API Key
+// API Key  
 require('dotenv').config();
 const API_KEY = process.env.API_KEY;
 
-app.get('/', (req, res) => {
-  console.log(req);
+app.get('/', (req, res) => {  
+  console.log(req);  
   res.send('Hello!')  
 })   
 
@@ -51,17 +51,29 @@ app.post('/file/upload', async (req, res) => {
         }
       }   
       let prompt = `\n\nHuman: Analyse the code\n\nAssistant: ${filesText}`;  
-      let results = await axios.post('https://api.anthropic.com/v1/complete', { 
-        prompt, 
-        model: "claude-v1", 
-        max_tokens_to_sample: 300, 
-        stop_sequences: ["\n\nHuman:"],
-        headers: { 'X-API-Key': API_KEY, 'Content-Type': 'application/json'}
-      });
-      console.log(results);  
-      res.send(results.data);
+     client  
+          .completeStream(
+            {
+              prompt,  
+              stop_sequences: ["\n\nHuman:"],
+              max_tokens_to_sample: 300, 
+              model: "claude-v1",
+            },
+            {
+              onOpen: (response) => {
+                console.log("Opened stream, HTTP status code", response.status);
+              },
+              onUpdate: (completion) => {
+                console.log(completion.completion);
+              },
+            }
+          )
+          .then((completion) => {
+            console.log("Finished sampling:\n", completion);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
     });
   });
 }); 
-
-app.listen(3000);
