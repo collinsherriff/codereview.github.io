@@ -4,7 +4,8 @@ const axios = require('axios');
 const fs = require('fs');
 
 // Add Claude API token
-const API_TOKEN = SECRET_TOKEN;
+require('dotenv').config();
+const API_TOKEN = process.env.API_TOKEN;
 
 app.get('/', (req, res) => {
     res.send('Hello!')
